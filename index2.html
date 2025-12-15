@@ -17,8 +17,7 @@
             --color-light-grey: #f0f4f8;
             --color-medium-grey: #aab8c2;
             --color-dark-text: #2c3e50;
-            /* New Accent Color: Deep Ocean Blue (#0077b6) */
-            --color-accent: #0077b6; 
+            --color-accent: #0077b6; /* Deep Ocean Blue */
             --color-box-shadow: rgba(0, 0, 0, 0.05);
             
             /* Typography */
@@ -53,7 +52,7 @@
 
         p {
             font-size: 1rem;
-            color: #55606a; /* slightly softer text color */
+            color: #55606a; 
         }
         
         .accent-text {
@@ -68,7 +67,7 @@
         */
         .bento-grid {
             display: grid;
-            gap: var(--spacing-unit); /* Space between grid items */
+            gap: var(--spacing-unit);
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -78,65 +77,36 @@
             border-radius: var(--border-radius);
             padding: calc(var(--spacing-unit) * 1.5);
             box-shadow: 0 4px 12px var(--color-box-shadow);
-            transition: transform 0.2s ease-in-out;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            /* Ensure the text content in cards uses the default dark text */
+            color: var(--color-dark-text); 
         }
         
         .bento-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transform: scale(1.01);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         /*
         -------------------------------------------------
-        3. Desktop Layout (Grid)
+        3. Desktop Layout (Grid) - Adjusted for 7 Cards
         -------------------------------------------------
         */
         @media (min-width: 768px) {
             .bento-grid {
-                /* Define a 3-column layout */
                 grid-template-columns: repeat(3, 1fr); 
-                /* Define 4 rows for flexible sizing */
                 grid-template-rows: auto;
             }
-
-            /* Card 1 (Profile): Large Box (2x2) */
-            #card-profile {
-                grid-column: span 2;
-                grid-row: span 2;
-            }
-
-            /* Card 2 (Location): Small Box (1x1) - Top Right */
-            #card-location {
-                grid-column: 3 / 4;
-                grid-row: 1 / 2;
-            }
-            
-            /* Card 3 (Tech Stack): Medium Box (1x1) - Middle Right */
-            #card-tech-stack {
-                grid-column: 3 / 4;
-                grid-row: 2 / 3;
-            }
-
-            /* Card 4 (Case Study): Medium Box (1x1) - Bottom Left */
-            #card-case-study {
-                grid-column: 1 / 2;
-                grid-row: 3 / 4;
-            }
-
-            /* Card 5 (Hobby): Small Box (1x1) - Bottom Middle */
-            #card-hobby {
-                grid-column: 2 / 3;
-                grid-row: 3 / 4;
-            }
-            
-            /* Card 6 (Playlist): Wide Box (3x1) - Bottom Row */
-            #card-playlist {
-                grid-column: span 3;
-                grid-row: 4 / 5;
-            }
+            #card-profile { grid-column: span 2; grid-row: span 2; }
+            #card-location { grid-column: 3 / 4; grid-row: 1 / 2; }
+            #card-tech-stack { grid-column: 3 / 4; grid-row: 2 / 3; }
+            #card-case-study { grid-column: 1 / 2; grid-row: 3 / 4; }
+            #card-hobby { grid-column: 2 / 3; grid-row: 3 / 4; }
+            #card-reflection { grid-column: 3 / 4; grid-row: 3 / 4; }
+            #card-playlist { grid-column: span 3; grid-row: 4 / 5; }
         }
         
         /*
@@ -145,76 +115,66 @@
         -------------------------------------------------
         */
         
-        /* Card 1: Profile Specifics */
-        #card-profile .profile-header {
-            margin-bottom: 1rem;
+        /* Card 1: Profile Specifics - BACKGROUND IMAGE APPLIED HERE */
+        #card-profile {
+            /* 1. Set the background image and positioning */
+            background-image: url('bg.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* 2. Add an overlay for readability and blend mode */
+            background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
+            background-blend-mode: overlay; 
+            
+            /* 3. Change all main text in this card to white for contrast */
+            color: var(--color-white); 
         }
+
+        #card-profile .profile-header { margin-bottom: 1rem; }
+        
+        /* Explicitly setting text colors for high contrast */
         #card-profile .profile-header h1 {
-            font-size: 2.25rem;
-            margin-bottom: 0.25rem;
-            color: var(--color-dark-text);
+            color: var(--color-white);
         }
         #card-profile .tagline {
-            font-size: 1.1rem;
-            color: var(--color-accent); /* Use accent color for tagline */
-            font-style: italic;
-            font-weight: 500;
+            color: var(--color-white); /* Use white for tagline on dark background */
         }
+        #card-profile .profile-details p {
+             color: #e0e0e0; /* Light grey for details */
+        }
+
+        /* Functional Links Styling - ensuring links are white */
         #card-profile .social-links a {
-            display: inline-block;
-            margin-right: 1rem;
-            color: var(--color-dark-text);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
-            transition: border-bottom 0.2s, color 0.2s;
+            color: var(--color-white);
         }
         #card-profile .social-links a:hover {
             color: var(--color-accent);
             border-bottom: 2px solid var(--color-accent);
         }
         
-        /* Card 2: Location Specifics (Time styling) */
-        #card-location {
-            text-align: center;
-            justify-content: center;
-        }
+        /* Card 2: Location Specifics */
+        #card-location { text-align: center; justify-content: center; }
         #card-location .time-display {
-            font-size: 2.5rem;
-            font-weight: 300;
-            line-height: 1;
-            color: var(--color-dark-text);
+            font-size: 2.5rem; font-weight: 300; line-height: 1; color: var(--color-dark-text);
         }
-
+        
         /* Card 3: Tech Stack/Subjects Specifics */
-        .subject-list {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
+        .subject-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .subject-list li {
-            background-color: var(--color-light-grey);
-            color: var(--color-dark-text);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            background-color: var(--color-light-grey); color: var(--color-dark-text);
+            padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 500;
         }
         
         /* Card 6: Playlist Specifics */
-        #card-playlist {
-            text-align: center;
-        }
+        #card-playlist { text-align: center; }
         #card-playlist .player-placeholder {
-            background-color: #e6e6e6;
-            color: #888;
-            padding: 2rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            font-style: italic;
+            background-color: #e6e6e6; color: #888; padding: 2rem; border-radius: 8px;
+            margin-top: 1rem; font-style: italic;
         }
+        
+        /* Other cards use default text colors */
+        #card-case-study p, #card-hobby p, #card-reflection p { color: #55606a; }
         
     </style>
 </head>
@@ -232,9 +192,9 @@
                 <p><strong>Year:</strong> Year 1 (New Student)</p>
             </div>
             <div class="social-links">
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
-                <a href="#">UMT Portal</a>
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank">UMT Portal</a>
             </div>
         </div>
 
@@ -242,7 +202,8 @@
             <div>
                 <p class="accent-text">Current Campus</p>
                 <h2>UMT, Kuala Nerus</h2>
-                <div class="time-display">10:47</div> </div>
+                <div class="time-display">12:02</div>
+            </div>
         </div>
         
         <div id="card-tech-stack" class="bento-card">
@@ -271,6 +232,14 @@
                 <h2>Favorite Campus Activity</h2>
                 <p class="accent-text">Relaxation</p>
                 <p>Evening walks at Pantai UMT, enjoying the sea breeze and Terengganu sunset.</p>
+            </div>
+        </div>
+        
+        <div id="card-reflection" class="bento-card">
+            <div>
+                <h2>Why Plant Science Matters in Malaysia</h2>
+                <p class="accent-text">Food Security Focus</p>
+                <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
             </div>
         </div>
         
