@@ -123,6 +123,18 @@
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
+            #card-profile {
+            /* Background Image Properties 
+            Assuming bg.jpg is located in the same directory as your HTML file
+            */
+            background-image: url('bg.jpg');
+            background-size: cover; /* Ensures the image covers the whole card */
+            background-position: center; /* Centers the image */
+            /* Optional: Add a subtle overlay to help text readability */
+            background-color: rgba(0, 0, 0, 0.2); /* Fallback color/overlay */
+            background-blend-mode: overlay; /* Blends the color and image */
+            color: var(--color-white); /* Change text color to white for contrast */
+        }
             
             /* 2. Add an overlay for readability and blend mode */
             background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
@@ -257,5 +269,6 @@
 
 </body>
 </html>
+
 
 
