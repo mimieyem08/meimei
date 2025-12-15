@@ -17,7 +17,8 @@
             --color-light-grey: #f0f4f8;
             --color-medium-grey: #aab8c2;
             --color-dark-text: #2c3e50;
-            --color-accent: #0077b6; /* Deep Ocean Blue */
+            /* New Accent Color: Deep Ocean Blue (#0077b6) */
+            --color-accent: #0077b6; 
             --color-box-shadow: rgba(0, 0, 0, 0.05);
             
             /* Typography */
@@ -36,9 +37,8 @@
 
         body {
             font-family: var(--font-family-sans);
-            background-image: url('bg.jpg');
-            background-size: cover;
-            background-blend-mode: overlay;
+            background-color: var(--color-light-grey);
+            color: var(--color-dark-text);
             line-height: 1.6;
             padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
             min-height: 100vh;
@@ -53,7 +53,7 @@
 
         p {
             font-size: 1rem;
-            color: #55606a; 
+            color: #55606a; /* slightly softer text color */
         }
         
         .accent-text {
@@ -68,7 +68,7 @@
         */
         .bento-grid {
             display: grid;
-            gap: var(--spacing-unit);
+            gap: var(--spacing-unit); /* Space between grid items */
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -78,16 +78,15 @@
             border-radius: var(--border-radius);
             padding: calc(var(--spacing-unit) * 1.5);
             box-shadow: 0 4px 12px var(--color-box-shadow);
+            /* Theme Tweak: Sublte Zoom Hover Effect */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            /* Ensure the text content in cards uses the default dark text */
-            color: var(--color-dark-text); 
         }
         
         .bento-card:hover {
-            transform: scale(1.01);
+            transform: scale(1.01); /* Scale up slightly */
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
@@ -98,16 +97,53 @@
         */
         @media (min-width: 768px) {
             .bento-grid {
+                /* Define a 3-column layout */
                 grid-template-columns: repeat(3, 1fr); 
+                /* We now have 4 items in row 3 (Card 4, 5, 7) -> Card 4 will span 1x2, 5 and 7 will be small */
                 grid-template-rows: auto;
             }
-            #card-profile { grid-column: span 2; grid-row: span 2; }
-            #card-location { grid-column: 3 / 4; grid-row: 1 / 2; }
-            #card-tech-stack { grid-column: 3 / 4; grid-row: 2 / 3; }
-            #card-case-study { grid-column: 1 / 2; grid-row: 3 / 4; }
-            #card-hobby { grid-column: 2 / 3; grid-row: 3 / 4; }
-            #card-reflection { grid-column: 3 / 4; grid-row: 3 / 4; }
-            #card-playlist { grid-column: span 3; grid-row: 4 / 5; }
+
+            /* Card 1 (Profile): Large Box (2x2) */
+            #card-profile {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            /* Card 2 (Location): Small Box (1x1) - Top Right */
+            #card-location {
+                grid-column: 3 / 4;
+                grid-row: 1 / 2;
+            }
+            
+            /* Card 3 (Tech Stack): Medium Box (1x1) - Middle Right */
+            #card-tech-stack {
+                grid-column: 3 / 4;
+                grid-row: 2 / 3;
+            }
+
+            /* Card 4 (Case Study): Medium Box (1x1) - Bottom Left */
+            #card-case-study {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4; /* Stays in column 1, row 3 */
+            }
+
+            /* Card 5 (Hobby): Small Box (1x1) - Middle Left */
+            #card-hobby {
+                grid-column: 2 / 3;
+                grid-row: 3 / 4; /* Moves to column 2, row 3 */
+            }
+
+            /* Card 7 (Reflection): New Card (1x1) - Top Right of Bottom Section */
+            #card-reflection {
+                grid-column: 3 / 4;
+                grid-row: 3 / 4; /* New position: column 3, row 3 */
+            }
+            
+            /* Card 6 (Playlist): Wide Box (3x1) - New bottom row */
+            #card-playlist {
+                grid-column: span 3;
+                grid-row: 4 / 5;
+            }
         }
         
         /*
@@ -116,78 +152,90 @@
         -------------------------------------------------
         */
         
-        /* Card 1: Profile Specifics - BACKGROUND IMAGE APPLIED HERE */
+        /* Card 1: Profile Specifics */
+        #card-profile .profile-header {
+            margin-bottom: 1rem;
+        }
+        #card-profile .profile-header h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.25rem;
+            color: var(--color-dark-text);
+        }
+        #card-profile .tagline {
+            font-size: 1.1rem;
+            color: var(--color-accent); /* Use accent color for tagline */
+            font-style: italic;
+            font-weight: 500;
+        }
+        /* Functional Links Styling */
+        #card-profile .social-links a {
+            display: inline-block;
+            margin-right: 1rem;
+            color: var(--color-dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.2s, color 0.2s;
+        }
+        #card-profile .social-links a:hover {
+            color: var(--color-accent);
+            border-bottom: 2px solid var(--color-accent);
+        }
+            /* Card 1: Profile Specifics - BACKGROUND IMAGE APPLIED HERE */
         #card-profile {
             /* 1. Set the background image and positioning */
             background-image: url('bg.jpg');
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
-            #card-profile {
-            /* Background Image Properties 
-            Assuming bg.jpg is located in the same directory as your HTML file
-            */
-            background-image: url('bg.jpg');
-            background-size: cover; /* Ensures the image covers the whole card */
-            background-position: center; /* Centers the image */
-            /* Optional: Add a subtle overlay to help text readability */
-            background-color: rgba(0, 0, 0, 0.2); /* Fallback color/overlay */
-            background-blend-mode: overlay; /* Blends the color and image */
-            color: var(--color-white); /* Change text color to white for contrast */
-        }
-            
-            /* 2. Add an overlay for readability and blend mode */
-            background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
-            background-blend-mode: overlay; 
-            
-            /* 3. Change all main text in this card to white for contrast */
-            color: var(--color-white); 
-        }
-
-        #card-profile .profile-header { margin-bottom: 1rem; }
         
-        /* Explicitly setting text colors for high contrast */
-        #card-profile .profile-header h1 {
-            color: var(--color-white);
+        /* Card 2: Location Specifics (Time styling) */
+        #card-location {
+            text-align: center;
+            justify-content: center;
         }
-        #card-profile .tagline {
-            color: var(--color-white); /* Use white for tagline on dark background */
-        }
-        #card-profile .profile-details p {
-             color: #e0e0e0; /* Light grey for details */
-        }
-
-        /* Functional Links Styling - ensuring links are white */
-        #card-profile .social-links a {
-            color: var(--color-white);
-        }
-        #card-profile .social-links a:hover {
-            color: var(--color-accent);
-            border-bottom: 2px solid var(--color-accent);
-        }
-        
-        /* Card 2: Location Specifics */
-        #card-location { text-align: center; justify-content: center; }
         #card-location .time-display {
-            font-size: 2.5rem; font-weight: 300; line-height: 1; color: var(--color-dark-text);
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1;
+            color: var(--color-dark-text);
         }
-        
+
         /* Card 3: Tech Stack/Subjects Specifics */
-        .subject-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .subject-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
         .subject-list li {
-            background-color: var(--color-light-grey); color: var(--color-dark-text);
-            padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 500;
+            background-color: var(--color-light-grey);
+            color: var(--color-dark-text);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
         
         /* Card 6: Playlist Specifics */
-        #card-playlist { text-align: center; }
-        #card-playlist .player-placeholder {
-            background-color: #e6e6e6; color: #888; padding: 2rem; border-radius: 8px;
-            margin-top: 1rem; font-style: italic;
+        #card-playlist {
+            text-align: center;
         }
-        
-        /* Other cards use default text colors */
-        #card-case-study p, #card-hobby p, #card-reflection p { color: #55606a; }
+        #card-playlist .player-placeholder {
+            background-color: #e6e6e6;
+            color: #888;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Card 7: Reflection Specifics */
+        #card-reflection {
+             /* Ensures text doesn't overflow if content is long */
+             overflow: hidden; 
+        }
         
     </style>
 </head>
@@ -205,8 +253,7 @@
                 <p><strong>Year:</strong> Year 1 (New Student)</p>
             </div>
             <div class="social-links">
-                <a href="#" target="_blank">LinkedIn</a>
-                <a href="#" target="_blank">GitHub</a>
+                <a href="https://github.com/mimieyem08" target="_blank">GitHub</a>
                 <a href="#" target="_blank">UMT Portal</a>
             </div>
         </div>
@@ -215,7 +262,7 @@
             <div>
                 <p class="accent-text">Current Campus</p>
                 <h2>UMT, Kuala Nerus</h2>
-                <div class="time-display">12:02</div>
+                <div class="time-display">11:36</div>
             </div>
         </div>
         
@@ -260,7 +307,7 @@
             <div>
                 <h2>Study & Focus Playlist</h2>
                 <div class="player-placeholder">
-                    [ Placeholder: Embedded Music Player Widget for Concentration ]
+                    [ Placeholder:<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6ODWeU3s4kHGZvjEEY78G0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>  ]
                 </div>
             </div>
         </div>
@@ -269,6 +316,3 @@
 
 </body>
 </html>
-
-
-
