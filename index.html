@@ -99,7 +99,6 @@
             .bento-grid {
                 /* Define a 3-column layout */
                 grid-template-columns: repeat(3, 1fr); 
-                /* We now have 4 items in row 3 (Card 4, 5, 7) -> Card 4 will span 1x2, 5 and 7 will be small */
                 grid-template-rows: auto;
             }
 
@@ -124,19 +123,19 @@
             /* Card 4 (Case Study): Medium Box (1x1) - Bottom Left */
             #card-case-study {
                 grid-column: 1 / 2;
-                grid-row: 3 / 4; /* Stays in column 1, row 3 */
+                grid-row: 3 / 4; 
             }
 
             /* Card 5 (Hobby): Small Box (1x1) - Middle Left */
             #card-hobby {
                 grid-column: 2 / 3;
-                grid-row: 3 / 4; /* Moves to column 2, row 3 */
+                grid-row: 3 / 4; 
             }
 
             /* Card 7 (Reflection): New Card (1x1) - Top Right of Bottom Section */
             #card-reflection {
                 grid-column: 3 / 4;
-                grid-row: 3 / 4; /* New position: column 3, row 3 */
+                grid-row: 3 / 4; 
             }
             
             /* Card 6 (Playlist): Wide Box (3x1) - New bottom row */
@@ -163,11 +162,10 @@
         }
         #card-profile .tagline {
             font-size: 1.1rem;
-            color: var(--color-accent); /* Use accent color for tagline */
+            color: var(--color-accent); 
             font-style: italic;
             font-weight: 500;
         }
-        /* Functional Links Styling */
         #card-profile .social-links a {
             display: inline-block;
             margin-right: 1rem;
@@ -182,15 +180,15 @@
             color: var(--color-accent);
             border-bottom: 2px solid var(--color-accent);
         }
-            /* Card 1: Profile Specifics - BACKGROUND IMAGE APPLIED HERE */
+        
         #card-profile {
-            /* 1. Set the background image and positioning */
             background-image: url('bg.jpg');
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
-        
-        /* Card 2: Location Specifics (Time styling) */
+        }
+
+        /* Card 2: Location Specifics */
         #card-location {
             text-align: center;
             justify-content: center;
@@ -218,6 +216,32 @@
             font-weight: 500;
         }
         
+        /* Card 4: Case Study - New Column/Button Styling */
+        .case-study-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-focus-timer {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 0.5rem;
+        }
+
+        .btn-focus-timer:hover {
+            background-color: #005f92;
+            transform: translateY(-2px);
+        }
+
         /* Card 6: Playlist Specifics */
         #card-playlist {
             text-align: center;
@@ -233,7 +257,6 @@
 
         /* Card 7: Reflection Specifics */
         #card-reflection {
-             /* Ensures text doesn't overflow if content is long */
              overflow: hidden; 
         }
         
@@ -280,10 +303,13 @@
         </div>
         
         <div id="card-case-study" class="bento-card">
-            <div>
-                <h2>Case Study: Rock Minerals</h2>
-                <p class="accent-text">Lab: Basic Properties of Soil Formation</p>
-                <p>To understand the basic properties of rocks, the processes involved in the formation of soils, and the needs of plants provided by soil.</p>
+            <div class="case-study-content">
+                <div>
+                    <h2>Case Study: Rock Minerals</h2>
+                    <p class="accent-text">Lab: Soil Formation</p>
+                    <p>To understand rocks, soil formation, and plant needs.</p>
+                </div>
+                <a href="https://mimieyem08.github.io/focus-timer-app/app.html" class="btn-focus-timer">Try My Focus Timer App</a>
             </div>
         </div>
         
